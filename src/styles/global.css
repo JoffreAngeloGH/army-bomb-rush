@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; touch-action: none; font-family: 'Nunito', system-ui, sans-serif; background: #1a0b2e; color: #fff; user-select: none; -webkit-user-select: none; }
+#game-wrapper { position: relative; width: 100vw; height: 100dvh; overflow: hidden; background: radial-gradient(circle at 50% 20%, #5b21b6 0%, #3b0f87 45%, #1a0b2e 100%); }
+canvas { display: block; width: 100%; height: 100%; }
+.hide { display: none !important; }
+
+.screen { position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; background: rgba(26, 11, 46, .88); backdrop-filter: blur(6px); overflow-y: auto; }
+.screen.dark { background: rgba(0, 0, 0, .8); z-index: 30; }
+.screen.danger { background: rgba(69, 10, 10, .9); z-index: 30; }
+.glass-panel { width: 100%; max-width: 380px; padding: 28px 24px; border-radius: 28px; text-align: center; background: rgba(46, 16, 101, .85); border: 2px solid rgba(230, 230, 250, .3); box-shadow: 0 10px 40px rgba(0,0,0,.5), inset 0 0 20px rgba(123, 104, 238, .2); }
+.glass-panel.red { border-color: rgba(239, 68, 68, .5); box-shadow: 0 0 40px rgba(220, 38, 38, .4); }
+
+.icon { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.2em; }
+
+.btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .6em; width: 100%; min-height: 52px; padding: 12px 18px; border: 0; border-radius: 16px; font: inherit; font-weight: 900; font-size: clamp(16px, 4.8vw, 20px); letter-spacing: .01em; white-space: nowrap; cursor: pointer; transition: transform .12s, filter .2s, box-shadow .2s; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: scale(.96); }
+.btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid #f0abfc; outline-offset: 3px; }
+.btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%); transform: translateX(-120%); transition: transform .6s; }
+.btn:hover::after { transform: translateX(120%); }
+.btn .icon { transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.btn:hover .icon { transform: rotate(180deg); }
+.btn.primary:hover .icon, .btn.light:hover .icon { transform: translateX(3px); }
+.btn.primary { color: #fff; background: linear-gradient(90deg, #7c3aed, #4f46e5); box-shadow: 0 0 22px rgba(124, 58, 237, .55); }
+.btn.light { background: #fff; color: #312e81; box-shadow: 0 0 15px rgba(255,255,255,.4); }
+.btn.restart { color: #fff; background: linear-gradient(90deg, #f43f5e, #c026d3 55%, #7c3aed); box-shadow: 0 8px 26px rgba(217, 70, 239, .45), inset 0 1px 0 rgba(255,255,255,.35); }
+.btn.restart:hover .icon { transform: rotate(180deg); }
+
+.pop-in { animation: popIn .6s cubic-bezier(.34, 1.56, .64, 1) both; }
+@keyframes popIn { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes float { 50% { transform: translateY(-8px); } }
+
+.shake-active { animation: shake .4s cubic-bezier(.36, .07, .19, .97) both; }
+@keyframes shake { 10%, 90% { transform: translate3d(-2px,0,0); } 20%, 80% { transform: translate3d(4px,0,0); } 30%, 50%, 70% { transform: translate3d(-8px,0,0); } 40%, 60% { transform: translate3d(8px,0,0); } }
+
+#damage-flash { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: rgba(255, 0, 0, .4); opacity: 0; transition: opacity .15s ease-out; }
+#damage-flash.flash-active { opacity: 1; transition: opacity .05s ease-in; }
+
+#pause-btn, #mute-btn { position: absolute; z-index: 40; bottom: max(14px, env(safe-area-inset-bottom)); right: 14px; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: rgba(30, 10, 70, .75); color: #e9d5ff; cursor: pointer; transition: transform .12s, background .2s; }
+#pause-btn:hover, #mute-btn:hover { background: rgba(91, 33, 182, .85); }
+#pause-btn:active, #mute-btn:active { transform: scale(.92); }
+#pause-btn .icon, #mute-btn .icon { width: 20px; height: 20px; }
+
+@media (max-width: 380px) { .screen { padding: 12px; } .glass-panel { padding: 22px 16px; border-radius: 22px; } }
+#pause-btn { right: auto; left: 14px; }
+.btn.ghost { color: #e9d5ff; background: rgba(255,255,255,.08); border: 1px solid rgba(233,213,255,.3); }

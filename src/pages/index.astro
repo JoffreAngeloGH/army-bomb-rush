@@ -1,11 +1,30 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hud from '../components/Hud.astro';
+import IntroScreen from '../components/IntroScreen.astro';
+import StartScreen from '../components/StartScreen.astro';
+import LevelModal from '../components/LevelModal.astro';
+import GameOver from '../components/GameOver.astro';
+import PauseScreen from '../components/PauseScreen.astro';
+import Icon from '../components/Icon.astro';
+import { members, groupImg } from '../data/members';
 ---
-
 <Layout>
-	<Welcome />
+	<main id="game-wrapper">
+		<div id="damage-flash"></div>
+		<canvas id="gameCanvas"></canvas>
+		<Hud />
+		<IntroScreen />
+		<StartScreen />
+		<LevelModal />
+		<PauseScreen />
+		<GameOver />
+		<button id="pause-btn" class="hide" type="button" aria-label="Pausa" title="Pausa (P)"><Icon name="pause" /></button>
+		<button id="mute-btn" type="button" aria-label="Sonido" title="Sonido"><Icon name="volume-on" /></button>
+	</main>
+	{[...members.map((m) => m.img), groupImg].map((src) => <link rel="preload" as="image" href={src} />)}
+	<script>
+		import '../scripts/game';
+		import '../scripts/intro';
+	</script>
 </Layout>

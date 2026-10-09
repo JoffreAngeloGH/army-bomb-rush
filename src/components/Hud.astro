@@ -1,0 +1,39 @@
+<div id="ui-hud" class="hide">
+	<div class="hud-card" id="score-container">
+		<p class="label">Nivel <span id="hud-level">1</span></p>
+		<p id="hud-score" class="big">0</p>
+		<div class="progress"><div id="hud-progress"></div></div>
+	</div>
+	<div class="hud-card center" id="combo-container">
+		<p class="label">Combo</p>
+		<p id="hud-combo" class="mid">x1</p>
+	</div>
+	<div class="hud-card right" id="lives-container">
+		<p class="label">Vidas</p>
+		<p id="hud-lives" class="mid lives"></p>
+	</div>
+</div>
+<style is:global>
+	#ui-hud { position: absolute; top: 0; left: 0; width: 100%; padding: 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; pointer-events: none; z-index: 10; }
+	.hud-card { background: rgba(30, 10, 70, .8); border: 1px solid rgba(167, 139, 250, .35); border-radius: 18px; padding: 8px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.4); transition: transform .15s; min-width: 92px; }
+	.hud-card.right { text-align: right; }
+	.hud-card.center { text-align: center; }
+	.hud-card .label { margin: 0 0 2px; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #c4b5fd; }
+	.hud-card .big { margin: 0; font-size: 32px; font-weight: 900; line-height: 1; }
+	.hud-card .mid { margin: 0; font-size: 24px; font-weight: 900; line-height: 1.2; letter-spacing: .05em; }
+	.progress { margin-top: 6px; height: 5px; border-radius: 99px; background: rgba(255,255,255,.15); overflow: hidden; }
+	#hud-progress { height: 100%; width: 0; background: linear-gradient(90deg, #a78bfa, #f0abfc); transition: width .25s; }
+	.hud-card.bump { transform: scale(1.15); }
+	.lives { display: flex; justify-content: flex-end; gap: 3px; padding-top: 4px; }
+	.lives .icon { width: 22px; height: 22px; color: #c084fc; filter: drop-shadow(0 0 6px rgba(192, 132, 252, .7)); }
+	.lives .icon.lost { color: #4b3b6b; filter: none; }
+	@media (max-width: 420px) {
+		#ui-hud { padding: 10px; gap: 6px; }
+		.hud-card { padding: 6px 10px; min-width: 0; border-radius: 14px; }
+		.hud-card .big { font-size: 24px; }
+		.hud-card .mid { font-size: 19px; }
+		.hud-card .label { font-size: 9px; }
+		.lives .icon { width: 17px; height: 17px; }
+	}
+	#combo-container.hot #hud-combo { color: #f0abfc; text-shadow: 0 0 12px #e879f9; }
+</style>

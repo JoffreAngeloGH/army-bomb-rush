@@ -1,0 +1,53 @@
+---
+import { members } from '../data/members';
+import Icon from './Icon.astro';
+---
+<div id="start-screen" class="screen hide">
+	<div class="glass-panel pop-in">
+		<p class="eyebrow">ARMY Bomb Rush</p>
+		<h1>BTS - JFF</h1>
+		<p class="sub">¡Atrapa a los siete con tu ARMY Bomb y esquiva los corazones rotos!</p>
+
+		<div class="faces">
+			{members.map((m, i) => <img src={m.img} alt={m.name} title={m.name} style={`animation-delay:${i * 0.2}s`} />)}
+		</div>
+
+		<div class="rules">
+			<p><Icon name="check" class="ok" /><span><b>Atrapa</b> a los chicos <em>(+10)</em> y los corazones lila <em>(+20)</em></span></p>
+			<p><Icon name="flame" class="fire" /><span><b>Combo:</b> cada 8 seguidos sube el multiplicador (hasta x3)</span></p>
+			<p><Icon name="x" class="bad" /><span><b>Evita</b> los corazones rotos <em>(−1 vida y pierdes el combo)</em></span></p>
+			<p class="hint">Mueve el mouse / el dedo, o usa ← → / A D</p>
+		</div>
+
+		<p class="best"><Icon name="trophy" /> Récord: <b id="best-start">0</b></p>
+		<button id="start-btn" class="btn primary" type="button">
+			<Icon name="play" />
+			<span>¡EMPEZAR!</span>
+		</button>
+	</div>
+</div>
+<style>
+	.eyebrow { margin: 0 0 4px; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #c4b5fd; font-weight: 800; }
+	h1 { margin: 0 0 8px; font-size: clamp(32px, 10vw, 40px); line-height: 1.05; font-weight: 900; background: linear-gradient(90deg, #e9d5ff, #a78bfa, #f0abfc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+	.sub { margin: 0 0 16px; color: #ddd6fe; font-size: 14px; font-weight: 700; }
+	.faces { display: flex; justify-content: center; margin-bottom: 18px; }
+	.faces img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid #c4b5fd; margin-left: -8px; background: #2e1065; animation: float 3s ease-in-out infinite; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+	.faces img:first-child { margin-left: 0; }
+	.rules { text-align: left; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; }
+	.rules p { margin: 0 0 8px; font-size: 13px; color: #e5e7eb; display: flex; align-items: flex-start; gap: 8px; }
+	.rules em { color: #a78bfa; font-weight: 800; font-style: normal; }
+	.rules :global(.icon) { flex: none; width: 16px; height: 16px; margin-top: 1px; }
+	.rules :global(.ok) { color: #4ade80; }
+	.rules :global(.fire) { color: #fb923c; }
+	.rules :global(.bad) { color: #f87171; }
+	.rules .hint { margin: 10px 0 0; color: #9ca3af; font-size: 12px; display: block; }
+	.best { margin: 0 0 14px; color: #c4b5fd; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+	.best :global(.icon) { width: 15px; height: 15px; color: #fcd34d; }
+	@media (max-width: 380px), (max-height: 700px) {
+		.eyebrow { display: none; }
+		.faces img { width: 36px; height: 36px; }
+		.faces { margin-bottom: 12px; }
+		.rules { padding: 10px 12px; }
+	}
+	.best b { color: #fff; }
+</style>

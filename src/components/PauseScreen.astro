@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+---
+<div id="pause-screen" class="screen hide dark">
+	<div class="glass-panel pop-in">
+		<div class="pause-icon"><Icon name="pause" /></div>
+		<h2>Pausa</h2>
+		<p>Respira, ARMY. El juego te espera.</p>
+		<button id="resume-btn" class="btn primary" type="button"><Icon name="play" /><span>Continuar</span></button>
+		<button id="pause-restart-btn" class="btn ghost" type="button"><Icon name="refresh" /><span>Reiniciar</span></button>
+	</div>
+</div>
+<style>
+	.pause-icon { width: 64px; height: 64px; margin: 0 auto 8px; display: grid; place-items: center; border-radius: 50%; background: rgba(167, 139, 250, .2); color: #e9d5ff; }
+	.pause-icon :global(svg) { width: 30px; height: 30px; }
+	h2 { margin: 0 0 4px; font-size: clamp(28px, 8vw, 34px); font-weight: 900; color: #d8b4fe; }
+	p { margin: 0 0 22px; color: #ddd6fe; font-weight: 700; }
+	.btn + .btn { margin-top: 10px; }
+</style>

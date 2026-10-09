@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+---
+<div id="game-over-screen" class="screen hide danger">
+	<div id="game-over-panel" class="glass-panel red">
+		<div class="broken"><Icon name="heart-crack" /></div>
+		<h2>¡Oh no!</h2>
+		<p class="msg">Te quedaste sin corazones.</p>
+		<div class="score-box">
+			<p class="label">Puntuación final</p>
+			<p id="final-score">0</p>
+			<p id="new-record" class="hide"><Icon name="trophy" /> ¡Nuevo récord!</p>
+		</div>
+		<button id="restart-btn" class="btn restart" type="button">
+			<Icon name="refresh" />
+			<span>Jugar de nuevo</span>
+		</button>
+	</div>
+</div>
+<style>
+	.broken { width: clamp(56px, 18vw, 76px); margin: 0 auto 8px; color: #fb7185; filter: drop-shadow(0 0 14px rgba(244, 63, 94, .7)); animation: bounce 1s infinite; }
+	.broken :global(svg) { width: 100%; height: auto; stroke-width: 1.6; }
+	@keyframes bounce { 50% { transform: translateY(-10px); } }
+	h2 { margin: 0 0 4px; font-size: clamp(30px, 9vw, 38px); font-weight: 900; }
+	.msg { margin: 0 0 18px; color: #fecaca; }
+	.score-box { background: rgba(0,0,0,.5); border: 1px solid rgba(239,68,68,.3); border-radius: 18px; padding: 16px; margin-bottom: 22px; }
+	.label { margin: 0 0 4px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #d1d5db; font-weight: 800; }
+	#final-score { margin: 0; font-size: clamp(42px, 13vw, 52px); font-weight: 900; color: #d8b4fe; line-height: 1; }
+	#new-record { margin: 10px 0 0; color: #fde68a; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; }
+</style>
